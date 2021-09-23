@@ -1,0 +1,41 @@
+<!-- Simple bar chart and scatterplot concatenated vertically using Vega-Lite on a HTML page -->
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Music Sales</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+  </head>
+
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        description: 'A simple bar chart with embedded data.',
+        data: { "url": "https://raw.githubusercontent.com/Vis-Collab-USF-x-PICT/Datasets/main/barcharts-us-music-sales-by-genre.csv" },
+        "vconcat": [
+          {
+            mark: 'bar',
+            encoding: {
+              "x": { "field": "Year" },
+              "y": { "field": "Classical", "type": "quantitative" }
+            }
+          },
+          {
+            mark: 'point',
+            encoding: {
+              "x": { "field": "Year" },
+              "y": { "field": "Classical", "type": "quantitative" }
+            }
+          }
+        ]
+      };
+      vegaEmbed('#vis', yourVlSpec);
+    </script>
+  </body>
+
+</html>
